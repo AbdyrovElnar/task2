@@ -20,7 +20,7 @@ public class Transaction {
 
     private String name;
 
-    private int summ;
+    private int sum;
 
     @ManyToOne
     @JoinColumn(name = "currency_id")
