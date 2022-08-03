@@ -5,14 +5,14 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "cashRegister")
+@Table(name = "currencies")
 @Builder
 @Getter
 @Setter
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class Kassa {
+public class Currency {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
