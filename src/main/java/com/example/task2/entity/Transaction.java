@@ -23,6 +23,14 @@ public class Transaction {
     private int sum;
 
     @ManyToOne
+    @JoinColumn(name = "from_kassa_id")
+    private Kassa fromKassa;
+
+    @ManyToOne
+    @JoinColumn(name = "to_kassa_id")
+    private Kassa toKassa;
+
+    @ManyToOne
     @JoinColumn(name = "currency_id")
     private Currency currency;
 
@@ -41,5 +49,7 @@ public class Transaction {
     private String comment;
 
     private String uuid = UUID.randomUUID().toString();
+
+    private String status;
 
 }

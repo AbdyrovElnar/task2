@@ -20,4 +20,11 @@ public class User {
     private String email;
 
     private String password;
+
+    @Builder.Default
+    private boolean enabled = true;
+
+    @Builder.Default
+    private String role = "USER";
+
 }
