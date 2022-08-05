@@ -3,6 +3,7 @@ package com.example.task2.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
@@ -18,8 +19,6 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
-
     private int sum;
 
     @ManyToOne
@@ -34,15 +33,11 @@ public class Transaction {
     @JoinColumn(name = "currency_id")
     private Currency currency;
 
-    @ManyToOne
-    @JoinColumn(name = "fromCustomer_id")
-    private Customer fromCustomer;
+    private String fromCustomer;
 
     private String fromPhoneNumber;
 
-    @ManyToOne
-    @JoinColumn(name = "toCustomer_id")
-    private Customer toCustomer;
+    private String toCustomer;
 
     private String toPhoneNumber;
 
@@ -51,5 +46,7 @@ public class Transaction {
     private String uuid = UUID.randomUUID().toString();
 
     private String status;
+
+    private LocalDateTime date;
 
 }

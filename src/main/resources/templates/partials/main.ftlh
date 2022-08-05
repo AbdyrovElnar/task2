@@ -10,6 +10,8 @@
         <title>${title}</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" href="/css/main.css">
+        <link rel="stylesheet" href="/css/dropdown_style.css">
+
         <#list styles as styleSource>
             <link rel="stylesheet" href="${styleSource}">
         </#list>
@@ -23,10 +25,11 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-item nav-link active" href="#">Главная <span class="sr-only">(current)</span></a>
-                <a class="nav-item nav-link" href="#">Добавить кассу</a>
-                <a class="nav-item nav-link" href="#">Добавить валюту</a>
-                <a class="nav-item nav-link" href="#">Войти</a>
+                <a class="nav-item nav-link active" href="/">Главная <span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link" href="/uniq">Получить перевод</a>
+                <a class="nav-item nav-link" href="/kassa/create">Добавить кассу</a>
+                <a class="nav-item nav-link" href="/currency/create">Добавить валюту</a>
+                <a class="nav-item nav-link" href="/login">Войти</a>
                 <div class="px-4 logout-btn d-flex align-items-center">
                     <form action="/logout" method="post">
                         <#if _csrf??>
