@@ -1,7 +1,6 @@
 package com.example.task2.service;
 
 import com.example.task2.entity.Currency;
-import com.example.task2.entity.Kassa;
 import com.example.task2.repository.CurrencyRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
