@@ -5,9 +5,10 @@ import com.example.task2.entity.Status;
 import com.example.task2.entity.Transaction;
 import com.example.task2.repository.TransactionRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.UUID;
@@ -60,9 +61,12 @@ public class TransactionService {
 
     public void getMoney(Long transferId) {
         Optional<Transaction> tr = trRepo.findById(transferId);
-        if (tr.isPresent()) {
+        if (tr.isPresent() &&tr.get().getStatus().equals(Status.CREATED.toString())) {
             tr.get().setStatus(Status.ISSUED.toString());
             trRepo.save(tr.get());
         }
+    }
+    public Page<Transaction> getAllTransactions(Pageable pageable) {
+       return trRepo.findAll(pageable);
     }
 }

@@ -19,7 +19,7 @@
     <body>
 
     <nav class="navbar navbar-expand-lg navbar navbar-light"style="background-color: #e3f2fd;">
-        <a class="navbar-brand" href="#">Переводы</a>
+        <a class="navbar-brand" href="/">Переводы</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -27,6 +27,7 @@
             <div class="navbar-nav">
                 <a class="nav-item nav-link active" href="/">Главная <span class="sr-only">(current)</span></a>
                 <a class="nav-item nav-link" href="/uniq">Получить перевод</a>
+                <a class="nav-item nav-link" href="/transfers">Все переводы</a>
                 <a class="nav-item nav-link" href="/kassa/create">Добавить кассу</a>
                 <a class="nav-item nav-link" href="/currency/create">Добавить валюту</a>
                 <a class="nav-item nav-link" href="/login">Войти</a>

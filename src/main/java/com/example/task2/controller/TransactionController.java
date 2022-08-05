@@ -5,6 +5,7 @@ import com.example.task2.service.CurrencyService;
 import com.example.task2.service.KassaService;
 import com.example.task2.service.TransactionService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -63,4 +64,10 @@ public class TransactionController {
 
         return "redirect:/index";
     }
+    @GetMapping("/transfers")
+    public String getAllTransfers(Model model, Pageable pageable) {
+        model.addAttribute("transfer",transactionService.getAllTransactions(pageable).getContent());
+        return "transfers";
+    }
+
 }

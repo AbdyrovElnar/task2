@@ -15,4 +15,11 @@ private final KassaRepository kassaRepo;
 public List<Kassa> getListOfKassa(){
     return kassaRepo.findAll();
 }
+
+public void addNewKassa(String kassaName){
+    Kassa kassa = Kassa.builder()
+            .name(kassaName)
+            .build();
+    kassaRepo.save(kassa);
+}
 }
