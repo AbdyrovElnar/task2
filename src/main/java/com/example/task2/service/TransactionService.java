@@ -1,6 +1,7 @@
 package com.example.task2.service;
 
 import com.example.task2.dto.TransactionDTO;
+import com.example.task2.entity.Kassa;
 import com.example.task2.entity.Status;
 import com.example.task2.entity.Transaction;
 import com.example.task2.repository.TransactionRepository;
@@ -10,8 +11,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -61,12 +64,22 @@ public class TransactionService {
 
     public void getMoney(Long transferId) {
         Optional<Transaction> tr = trRepo.findById(transferId);
-        if (tr.isPresent() &&tr.get().getStatus().equals(Status.CREATED.toString())) {
+        if (tr.isPresent() && tr.get().getStatus().equals(Status.CREATED.toString())) {
             tr.get().setStatus(Status.ISSUED.toString());
             trRepo.save(tr.get());
         }
     }
+
     public Page<Transaction> getAllTransactions(Pageable pageable) {
-       return trRepo.findAll(pageable);
+        return trRepo.findAll(pageable);
+    }
+
+    public int showBalance(Kassa fromKassa) {
+        var trList = trRepo.findByFromKassaAndStatusLike(fromKassa, Status.CREATED.toString());
+        int balance = 0;
+        for (int i = 0; i < trList.size(); i++) {
+            balance += trList.get(i).getSum();
+        }
+        return balance;
     }
 }

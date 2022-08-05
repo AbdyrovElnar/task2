@@ -22,4 +22,5 @@ public void addNewKassa(String kassaName){
             .build();
     kassaRepo.save(kassa);
 }
+
 }

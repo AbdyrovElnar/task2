@@ -30,6 +30,7 @@
                 <a class="nav-item nav-link" href="/transfers">Все переводы</a>
                 <a class="nav-item nav-link" href="/kassa/create">Добавить кассу</a>
                 <a class="nav-item nav-link" href="/currency/create">Добавить валюту</a>
+                <a class="nav-item nav-link" href="/balance">Получить баланс кассы</a>
                 <a class="nav-item nav-link" href="/login">Войти</a>
                 <div class="px-4 logout-btn d-flex align-items-center">
                     <form action="/logout" method="post">

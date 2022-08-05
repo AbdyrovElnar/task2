@@ -1,9 +1,12 @@
 package com.example.task2.controller;
 
 import com.example.task2.dto.TransactionDTO;
+import com.example.task2.dto.UserRegisterForm;
+import com.example.task2.entity.Kassa;
 import com.example.task2.service.CurrencyService;
 import com.example.task2.service.KassaService;
 import com.example.task2.service.TransactionService;
+import com.example.task2.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
@@ -21,6 +24,7 @@ public class TransactionController {
     private final KassaService kassaService;
     private final CurrencyService currercyService;
     private final TransactionService transactionService;
+    private final UserService userService;
 
     @GetMapping("/")
     public String getTopProducts(Model model){
@@ -70,4 +74,40 @@ public class TransactionController {
         return "transfers";
     }
 
+    @GetMapping("/login")
+    public String loginPage() {
+        return "login";
+    }
+
+    @PostMapping("/login")
+    public String loginPagePOST(@RequestParam("username") String username) {
+        return "login";
+    }
+
+    @GetMapping("/register")
+    public String pageRegisterCustomer() {
+        return "/register";
+    }
+
+    @PostMapping("/register")
+    public String registerPage(UserRegisterForm userRequestDto, RedirectAttributes attributes) {
+
+        userService.register(userRequestDto);
+
+        return "redirect:/login";
+    }
+
+    @GetMapping("/balance")
+    public String getBalance(Model model) {
+        model.addAttribute("select_kassa",kassaService.getListOfKassa());
+        return "/balance";
+    }
+
+    @PostMapping("/balance")
+    public String getBalancePOST(Model model, @RequestParam("fromKassa") Kassa fromKassa) {
+        model.addAttribute("select_kassa",kassaService.getListOfKassa());
+        model.addAttribute("balance", transactionService.showBalance(fromKassa));
+
+        return "/balance";
+    }
 }

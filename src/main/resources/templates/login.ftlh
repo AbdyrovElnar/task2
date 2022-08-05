@@ -29,6 +29,10 @@
         <div>
             <button type="submit">Войти!</button>
         </div>
+        <div>
+            <a href="/register">Регистрация!</a>
+        </div>
+
     </form>
     <div class="bottom-box">
         <a href="/">На главную страницу</a>
