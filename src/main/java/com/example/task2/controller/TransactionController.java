@@ -3,6 +3,7 @@ package com.example.task2.controller;
 import com.example.task2.dto.TransactionDTO;
 import com.example.task2.dto.UserRegisterForm;
 import com.example.task2.entity.Kassa;
+import com.example.task2.entity.User;
 import com.example.task2.service.CurrencyService;
 import com.example.task2.service.KassaService;
 import com.example.task2.service.TransactionService;
@@ -72,7 +73,16 @@ public class TransactionController {
     @GetMapping("/transfers")
     public String getAllTransfers(Model model, Pageable pageable, Authentication auth) {
         model.addAttribute("transfer",transactionService.getAllTransactions(pageable).getContent());
-        model.addAttribute("user", auth.getPrincipal());
+        User user = userService.getUserEmail(auth.getName());
+        model.addAttribute("kassa", user.getKassa());
+        return "transfers";
+    }
+
+    @PostMapping("/transfers")
+    public String getAllTransfersSorted(@RequestParam("filter") String filter, Model model, Pageable pageable, Authentication auth) {
+        model.addAttribute("transfer",transactionService.getAllTransactionsSort(filter));
+        User user = userService.getUserEmail(auth.getName());
+        model.addAttribute("kassa", user.getKassa());
         return "transfers";
     }
 

@@ -8,9 +8,11 @@ import com.example.task2.repository.TransactionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -72,12 +74,24 @@ public class TransactionService {
         return trRepo.findAll(pageable);
     }
 
-    public int showBalance(Kassa fromKassa) {
-        var trList = trRepo.findByFromKassaAndStatusLike(fromKassa, Status.CREATED.toString());
-        int balance = 0;
-        for (int i = 0; i < trList.size(); i++) {
-            balance += trList.get(i).getSum();
+    public List<Transaction> getAllTransactionsSort(String filter) {
+        if (filter.equals("sumDesc")) {
+            return trRepo.findAll(Sort.by(Sort.Direction.DESC, "sum"));
+        } else if (filter.equals("dateDesc")) {
+            return trRepo.findAll(Sort.by(Sort.Direction.DESC, "date"));
+        } else if (filter.equals("dateAsc")) {
+            return trRepo.findAll(Sort.by(Sort.Direction.ASC, "date"));
+        } else {
+            return trRepo.findAll(Sort.by(Sort.Direction.ASC, "sum"));
         }
-        return balance;
     }
-}
+
+        public int showBalance (Kassa fromKassa){
+            var trList = trRepo.findByFromKassaAndStatusLike(fromKassa, Status.CREATED.toString());
+            int balance = 0;
+            for (int i = 0; i < trList.size(); i++) {
+                balance += trList.get(i).getSum();
+            }
+            return balance;
+        }
+    }

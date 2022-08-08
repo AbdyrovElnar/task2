@@ -5,6 +5,7 @@ import com.example.task2.entity.User;
 import com.example.task2.exception.UserAlreadyRegisteredException;
 import com.example.task2.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -29,5 +30,10 @@ public class UserService {
 
         userRepo.save(user);
     }
+
+    public User getUserEmail(String email){
+        return userRepo.findByEmail(email).get();
+    }
+
 
 }

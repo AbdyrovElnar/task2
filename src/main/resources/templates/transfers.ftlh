@@ -1,5 +1,22 @@
 <#import "partials/main.ftlh" as main />
 <@main.renderWith>
+    <label for="filter">Выберите фильтрацию:</label>
+    <form action="/transfers" method="post">
+        <#if _csrf??>
+            <input type="hidden" name="${(_csrf.parameterName)!'csrf'}" value="${(_csrf.token)!'--no-token--'}"/>
+        </#if>
+
+        <select name="filter" id="filter">
+        <option value="dateDesc">По дате возр</option>
+        <option value="sumDesc">По сумме возр</option>
+            <option value="dateAsc">По дате убыв</option>
+            <option value="sumAsc">По сумме убыв</option>
+    </select>
+    <div>
+        <button type="submit">Фильтрация</button>
+    </div>
+    </form>
+
         <table class="table table-striped">
             <thead>
             <tr>
@@ -30,7 +47,7 @@
                     <td>${transf.sum}</td>
                     <td>${transf.comment}</td>
                     <td>${transf.status}</td>
-                    <#if user==transf.fromKassa.name>
+                    <#if kassa==transf.fromKassa.name>
                     <td>${transf.uuid}</td>
                     </#if>
                 </tr>
