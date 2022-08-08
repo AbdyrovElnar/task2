@@ -27,4 +27,5 @@ public class User {
     @Builder.Default
     private String role = "USER";
 
+    private String kassa;
 }

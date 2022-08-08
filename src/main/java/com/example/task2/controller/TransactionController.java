@@ -9,6 +9,7 @@ import com.example.task2.service.TransactionService;
 import com.example.task2.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -69,8 +70,9 @@ public class TransactionController {
         return "redirect:/";
     }
     @GetMapping("/transfers")
-    public String getAllTransfers(Model model, Pageable pageable) {
+    public String getAllTransfers(Model model, Pageable pageable, Authentication auth) {
         model.addAttribute("transfer",transactionService.getAllTransactions(pageable).getContent());
+        model.addAttribute("user", auth.getPrincipal());
         return "transfers";
     }
 

@@ -9,4 +9,6 @@ public class UserRegisterForm {
     private String email = "";
 
     private String password = "";
+
+    private String kassa = "";
 }

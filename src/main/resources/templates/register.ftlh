@@ -28,6 +28,13 @@
             </label>
         </div>
         <div>
+            <label class="flex flex-v-center">
+                <p class="label-input-text">Касса:</p>
+                <input type="text" name="kassa" placeholder="ваша касса"  value="${(dto.kassa)!''}">
+            </label>
+        </div>
+
+        <div>
             <button type="submit">Регистрация</button>
         </div>
         <div>

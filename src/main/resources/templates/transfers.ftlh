@@ -12,6 +12,7 @@
                 <th scope="col">Сумма</th>
                 <th scope="col">Комментарий</th>
                 <th scope="col">Статус</th>
+                <th scope="col">Код активации</th>
 
             </tr>
             </thead>
@@ -29,6 +30,9 @@
                     <td>${transf.sum}</td>
                     <td>${transf.comment}</td>
                     <td>${transf.status}</td>
+                    <#if user==transf.fromKassa.name>
+                    <td>${transf.uuid}</td>
+                    </#if>
                 </tr>
                 </#list>
             </#if>

@@ -24,6 +24,7 @@ public class UserService {
         var user = User.builder()
                 .email(form.getEmail())
                 .password(encoder.encode(form.getPassword()))
+                .kassa(form.getKassa())
                 .build();
 
         userRepo.save(user);
