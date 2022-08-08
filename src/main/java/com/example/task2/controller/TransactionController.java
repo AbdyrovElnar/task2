@@ -66,7 +66,7 @@ public class TransactionController {
         attributes.addFlashAttribute("select_kassa",kassaService.getListOfKassa());
         attributes.addFlashAttribute("select_currency",currercyService.getListOfCurrency());
 
-        return "redirect:/index";
+        return "redirect:/";
     }
     @GetMapping("/transfers")
     public String getAllTransfers(Model model, Pageable pageable) {

@@ -65,6 +65,7 @@
         </dependency>
     </dependencies>
 
+
     <build>
         <plugins>
             <plugin>
@@ -80,6 +81,7 @@
                 </configuration>
             </plugin>
         </plugins>
+        <finalName>task2</finalName>
     </build>
 
 </project>
