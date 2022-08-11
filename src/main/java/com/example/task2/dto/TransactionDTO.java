@@ -2,6 +2,7 @@ package com.example.task2.dto;
 
 import com.example.task2.entity.Currency;
 import com.example.task2.entity.Kassa;
+import com.example.task2.entity.Transaction;
 import lombok.Builder;
 import lombok.Data;
 
@@ -27,5 +28,24 @@ public class TransactionDTO {
     private String comment;
     private LocalDateTime date;
     private String status;
+    private String uuid;
+
+    public static TransactionDTO from(Transaction transaction){
+        return TransactionDTO.builder()
+                .id(transaction.getId())
+                .sum(transaction.getSum())
+                .fromKassa(transaction.getFromKassa())
+                .toKassa(transaction.getToKassa())
+                .currency(transaction.getCurrency())
+                .fromCustomer(transaction.getFromCustomer())
+                .toCustomer(transaction.getToCustomer())
+                .toPhoneNumber(transaction.getToPhoneNumber())
+                .fromPhoneNumber(transaction.getFromPhoneNumber())
+                .comment(transaction.getComment())
+                .date(transaction.getDate())
+                .status(transaction.getStatus())
+                .uuid(transaction.getUuid())
+                .build();
+    }
 
 }

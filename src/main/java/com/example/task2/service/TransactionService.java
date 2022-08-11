@@ -21,7 +21,7 @@ import java.util.UUID;
 public class TransactionService {
     private final TransactionRepository trRepo;
 
-    public void saveTransaction(TransactionDTO trDto) {
+    public TransactionDTO saveTransaction(TransactionDTO trDto) {
         Transaction tr = Transaction.builder()
                 .sum(trDto.getSum())
                 .fromKassa(trDto.getFromKassa())
@@ -37,6 +37,9 @@ public class TransactionService {
                 .date(LocalDateTime.now())
                 .build();
         trRepo.save(tr);
+
+        return TransactionDTO.from(tr);
+
     }
 
     public TransactionDTO checkCode(String uniqCode) {
